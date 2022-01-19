@@ -7,6 +7,7 @@ use Nour\Export\Interfaces\ExportQueue;
 
 class ExampleExport implements ExportQueue
 {
+    public const FILE_NAME = './export.csv';
 
     public function model(): Builder
     {
@@ -37,7 +38,7 @@ class ExampleExport implements ExportQueue
 
     public function file()
     {
-        return './export.csv';
+        return self::FILE_NAME;
     }
 
 }

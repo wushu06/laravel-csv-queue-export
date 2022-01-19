@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'limit' => 100,
+    'limit' => 500,
     'email' => ''
 ];

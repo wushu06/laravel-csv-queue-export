@@ -28,9 +28,10 @@ class ExportTest extends TestCase
             ->setIterator(10);
         $job::dispatch(new ExampleExport());
         $job->handle();
-        $this->assertFileExists('./export.csv');
-        File::delete('./export.csv');
+        $this->assertFileExists(ExampleExport::FILE_NAME);
+        File::delete(ExampleExport::FILE_NAME);
     }
+
     /** @test */
     function it_convert_class_to_snake_name()
     {
@@ -51,6 +52,7 @@ class ExportTest extends TestCase
 /*
  * we pass a collection instead of query builder because we dont have a migration
  */
+
 class ExportJobFake extends ExportJob
 {
     protected function getData()
