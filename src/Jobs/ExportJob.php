@@ -12,9 +12,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
 use Nour\Export\Interfaces\ExportQueue;
 
-/**
- *
- */
 class ExportJob implements ShouldQueue
 {
     use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -23,24 +20,23 @@ class ExportJob implements ShouldQueue
      * @var int
      */
     protected int $limit;
+
     /**
      * @var int
      */
     protected int $iterator = 0;
+
     /**
      * @var string
      */
     protected string $fileName;
-    /**
-     *
-     */
-    private  $model;
 
     /**
      * @var ExportQueue
      */
     protected ExportQueue $object;
 
+    private $model;
 
     /**
      * ExportJob constructor.
@@ -73,17 +69,12 @@ class ExportJob implements ShouldQueue
         return $this;
     }
 
-    private function getFile(): string
-    {
-        return storage_path('app/' . $this->toSnakeCase(class_basename($this->object)) . '_queue_export.csv');
-    }
-
     public function toSnakeCase(string $camelCase): string
     {
         return  strtolower(
             preg_replace(
-                ["/([A-Z]+)/", "/_([A-Z]+)([A-Z][a-z])/"],
-                ["_$1", "_$1_$2"],
+                ['/([A-Z]+)/', '/_([A-Z]+)([A-Z][a-z])/'],
+                ['_$1', '_$1_$2'],
                 lcfirst($camelCase)
             )
         );
@@ -110,9 +101,7 @@ class ExportJob implements ShouldQueue
 
         return $data->get();
     }
-    /**
-     *
-     */
+
     protected function writeToCsvFile(): void
     {
         $data = $this->getData();
@@ -134,5 +123,10 @@ class ExportJob implements ShouldQueue
             }
             fclose($fp);
         }
+    }
+
+    private function getFile(): string
+    {
+        return storage_path('app/' . $this->toSnakeCase(class_basename($this->object)) . '_queue_export.csv');
     }
 }

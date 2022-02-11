@@ -14,17 +14,18 @@ class ExampleExport implements ExportQueue
         $collection = [
             [
                 'id' => 1,
-                'name' => 'nour'
+                'name' => 'nour',
             ],
             [
                 'id' => 2,
-                'name' => 'adam'
+                'name' => 'adam',
             ],
             [
                 'id' => 3,
-                'name' => 'hajar'
-            ]
+                'name' => 'hajar',
+            ],
         ];
+
         return ExportModel::hydrate($collection)->toQuery();
     }
 
@@ -40,5 +41,4 @@ class ExampleExport implements ExportQueue
     {
         return self::FILE_NAME;
     }
-
 }

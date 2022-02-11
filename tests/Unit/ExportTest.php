@@ -11,18 +11,17 @@ class ExportTest extends TestCase
 {
 
     /** @test */
-    function it_dispatches_the_export_job()
+    public function it_dispatches_the_export_job()
     {
         Bus::fake();
         $job = (new ExportJob(new ExampleExport()))
             ->setIterator(10);
         $job::dispatch(new ExampleExport());
         Bus::assertDispatched(ExportJob::class);
-
     }
 
     /** @test */
-    function it_creates_a_csv_file()
+    public function it_creates_a_csv_file()
     {
         $job = (new ExportJobFake(new ExampleExport()))
             ->setIterator(10);
@@ -33,7 +32,7 @@ class ExportTest extends TestCase
     }
 
     /** @test */
-    function it_convert_class_to_snake_name()
+    public function it_convert_class_to_snake_name()
     {
         $job = $this->getMockBuilder(ExportJob::class)
             ->disableOriginalConstructor()
@@ -45,7 +44,6 @@ class ExportTest extends TestCase
             ->willReturn('export_job');
 
         $job->toSnakeCase(ExportJob::class);
-
     }
 }
 
@@ -60,17 +58,18 @@ class ExportJobFake extends ExportJob
         $collection = [
             [
                 'id' => 1,
-                'name' => 'nour'
+                'name' => 'nour',
             ],
             [
                 'id' => 2,
-                'name' => 'adam'
+                'name' => 'adam',
             ],
             [
                 'id' => 3,
-                'name' => 'hajar'
-            ]
+                'name' => 'hajar',
+            ],
         ];
+
         return ExportModel::hydrate($collection);
     }
 }

@@ -30,7 +30,6 @@ class QueueEmail extends Mailable
      */
     public function build()
     {
-
         return $this->markdown('nour::emails.queue')
             ->subject($this->message)
             ->with(['message'  => $this->message]);

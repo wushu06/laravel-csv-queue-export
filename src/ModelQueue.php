@@ -39,5 +39,4 @@ class ModelQueue implements Pipe
             dispatch(new NotifyUser($message, $email));
         }
     }
-
 }

@@ -13,8 +13,8 @@ class NotifyUser implements ShouldQueue
 {
     use Queueable, Batchable, SerializesModels;
 
-
     private string $message;
+
     private string $mailTo;
 
     public function __construct($message, $mailTo)

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Nour\Export;
 
 use Closure;
@@ -26,5 +25,4 @@ class ModelExport implements Pipe
 
         return $next($export);
     }
-
 }

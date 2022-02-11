@@ -3,6 +3,7 @@
 namespace Nour\Export\Facades;
 
 use Illuminate\Support\Facades\Facade;
+
 /**
  * @method static bool export(object $export, string $email)
  */

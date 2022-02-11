@@ -13,7 +13,7 @@ class ExportServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         $this->loadViewsFrom(__DIR__.'/../resources/views', 'nour');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nour');
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
         }
@@ -26,7 +26,7 @@ class ExportServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/export.php', 'export');
+        $this->mergeConfigFrom(__DIR__ . '/../config/export.php', 'export');
         $this->app->singleton('export', function ($app) {
             return new Export;
         });
@@ -50,11 +50,11 @@ class ExportServiceProvider extends ServiceProvider
     protected function bootForConsole(): void
     {
         $this->publishes([
-            __DIR__.'/../config/export.php' => config_path('export.php'),
+            __DIR__ . '/../config/export.php' => config_path('export.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/nour'),
+            __DIR__ . '/../resources/views' => base_path('resources/views/vendor/nour'),
         ], 'views');
     }
 }
